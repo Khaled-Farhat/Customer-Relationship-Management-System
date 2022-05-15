@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('website');
             $table->string('address');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
