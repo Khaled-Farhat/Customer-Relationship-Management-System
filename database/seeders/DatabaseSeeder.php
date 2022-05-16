@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Organization;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,5 +22,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        Organization::factory(15)->hasClients(15)->create();
+        User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@example.com',
+        ]);
     }
 }
