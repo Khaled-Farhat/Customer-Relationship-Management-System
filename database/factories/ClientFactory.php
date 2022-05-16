@@ -18,7 +18,6 @@ class ClientFactory extends Factory
     public function definition()
     {
         return [
-            'company_id' => Organization::factory()->create(),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->unique()->phoneNumber(),
