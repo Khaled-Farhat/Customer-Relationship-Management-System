@@ -15,4 +15,9 @@ class Organization extends Model
         'address',
         'description',
     ];
+
+    public function clients()
+    {
+        return $this->hasMany(Client::class);
+    }
 }
