@@ -1,16 +1,4 @@
-<div class="mb-3">
-    <x-forms.label name="name" label="Name" />
-    <x-forms.text name="name" :model="$organization ?? null" />
-</div>
-<div class="mb-3">
-    <x-forms.label name="website" label="Website" />
-    <x-forms.text name="website" :model="$organization ?? null" />
-</div>
-<div class="mb-3">
-    <x-forms.label name="address" label="Address" />
-    <x-forms.text name="address" :model="$organization ?? null" />
-</div>
-<div class="mb-3">
-    <x-forms.label name="description" label="Description" />
-    <x-forms.textarea name="description" :model="$organization ?? null" />
-</div>
+<x-forms.text name="name" label="Name" :value="optional($organization)->name" class="mb-3" />
+<x-forms.text name="address" label="Address" :value="optional($organization)->address" class="mb-3" />
+<x-forms.text name="website" label="Website" :value="optional($organization)->website" class="mb-3" />
+<x-forms.textarea name="description" label="Description" :value="optional($organization)->description" class="mb-3" />

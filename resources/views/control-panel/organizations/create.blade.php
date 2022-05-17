@@ -9,7 +9,9 @@
 @endsection
 
 @section('input-fields')
-  @include('control-panel.organizations.partials.input-fields')
+  @include('control-panel.organizations.partials.input-fields', [
+      'organization' => null,
+  ])
 @endsection
 
 @section('submit-button')
