@@ -1,3 +1,11 @@
-<input type="text" name="{{ $name }}" class="form-control @error($name) is-invalid @enderror"
-  @isset($model) value="{{ $model->$name }}" @endisset>
+@props(['name', 'label' => null, 'value' => null])
+
+@if ($label)
+  <x-forms.label :name="$name" :label="$label" />
+@endif
+
+<input type="text" name="{{ $name }}" value="{{ old($name, $value) }}"
+  {{ $attributes->merge([
+      'class' => 'form-control' . ($errors->has($name) ? ' is-invalid' : ''),
+  ]) }}>
 <x-forms.invalid-feedback :name="$name" />
