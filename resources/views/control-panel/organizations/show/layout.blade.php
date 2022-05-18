@@ -1,26 +1,22 @@
-@extends('layouts.control-panel')
+@extends('layouts.show')
 
-@section('content')
-  <div class="row">
-    <div class="col-12 pe-0">
-      @include('control-panel.organizations.show.partials.info', [
-          'organization' => $organization,
-      ])
-    </div>
-  </div>
-  <div class="row pe-0 mt-3">
-    <div class="col-2">
-        @include('control-panel.organizations.show.partials.sidenav', [
-            'activeOrganizationNav' => $activeOrganizationNav,
-        ])
-    </div>
-    <div class="col-10 px-0">
-      @yield('button')
-      <div class="card">
-        <div class="card-body py-1">
-          @yield('table')
-        </div>
-      </div>
+@section('heading')
+  @include('control-panel.organizations.show.partials.info', [
+      'organization' => $organization,
+  ])
+@endsection
+
+@section('subnav')
+  @include('control-panel.organizations.show.partials.sidenav', [
+      'activeOrganizationNav' => $activeOrganizationNav,
+  ])
+@endsection
+
+@section('subcontent')
+  @yield('button')
+  <div class="card">
+    <div class="card-body py-1">
+      @yield('table')
     </div>
   </div>
 @endsection
