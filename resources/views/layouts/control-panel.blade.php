@@ -34,6 +34,10 @@
     <x-alerts.toast color="success" :message="session('success')" />
   @endif
 
+  @if (session()->has('error'))
+    <x-alerts.toast color="danger" :message="session('error')" />
+  @endif
+
   <script>
     $(document).ready(function() {
       $('.toast').toast({
