@@ -1,4 +1,4 @@
-@props(['action', 'content', 'color', 'size' => 'medium'])
+@props(['action', 'content', 'color', 'size' => 'medium', 'method' => 'DELETE'])
 
 @php
 $buttonClass = 'btn btn-' . $color . ' bg-gradient';
@@ -14,6 +14,6 @@ if ($size === 'small') {
     'class' => 'd-inline',
 ]) }}>
   @csrf()
-  @method('DELETE')
+  @method($method)
   <button type="submit" class="{{ $buttonClass }}">{{ $content }}</button>
 </form>
