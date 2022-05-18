@@ -2,10 +2,12 @@
 
 <table class="table-hover table">
   <thead>
-    <th>Name</th>
-    <th>Website</th>
-    <th>Address</th>
-    <th>Actions</th>
+    <tr>
+      <th>Name</th>
+      <th>Website</th>
+      <th>Address</th>
+      <th>Actions</th>
+    </tr>
   </thead>
   <tbody>
     @foreach ($organizations as $organization)
