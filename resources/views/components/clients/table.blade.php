@@ -1,6 +1,6 @@
 @props(['clients', 'showOrganization' => false])
 
-<table class="table-hover table">
+<table class="table-hover table align-middle">
   <thead>
     <tr>
       <th>Name</th>
