@@ -25,8 +25,8 @@ class StoreOrganizationRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255', 'unique:organizations,name'],
-            'website' => ['required', 'string', 'url'],
-            'address' => ['required', 'string'],
+            'website' => ['required', 'string', 'max:255', 'url'],
+            'address' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
         ];
     }
