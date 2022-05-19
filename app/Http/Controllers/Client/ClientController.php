@@ -19,7 +19,7 @@ class ClientController extends Controller
     public function index()
     {
         return view('control-panel.clients.index', [
-            'clients' => Client::with('organization:id,name')->paginate(10),
+            'clients' => Client::latest()->with('organization:id,name')->paginate(10),
         ]);
     }
 

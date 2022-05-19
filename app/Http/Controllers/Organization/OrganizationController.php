@@ -17,7 +17,7 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        $organizations = Organization::paginate(10);
+        $organizations = Organization::latest()->paginate(10);
 
         return view('control-panel.organizations.index', [
             'organizations' => $organizations,
