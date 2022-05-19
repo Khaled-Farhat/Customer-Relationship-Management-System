@@ -3,10 +3,7 @@
     'activeClientNav' => 'documents',
 ])
 
-@section('button')
-  <x-documents.upload-document :action="route('clients.documents.store', $client)" class="mb-2" />
-@endsection
-
-@section('table')
-    <x-documents.table :documents="$documents" />
-@endsection
+@include('layouts.documents.index', [
+    'action' => route('clients.documents.store', $client),
+    'documents' => $documents,
+])
