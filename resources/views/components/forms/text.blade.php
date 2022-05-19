@@ -1,4 +1,4 @@
-@props(['name', 'label' => null, 'value' => null])
+@props(['name', 'label' => null, 'value' => null, 'hasFeedback' => true])
 
 @if ($label)
   <x-forms.label :name="$name" :label="$label" />
@@ -6,6 +6,9 @@
 
 <input type="text" name="{{ $name }}" value="{{ old($name, $value) }}"
   {{ $attributes->merge([
-      'class' => 'form-control' . ($errors->has($name) ? ' is-invalid' : ''),
+      'class' => 'form-control' . ($hasFeedback && $errors->has($name) ? ' is-invalid' : ''),
   ]) }}>
-<x-forms.invalid-feedback :name="$name" />
+
+@if ($hasFeedback)
+  <x-forms.invalid-feedback :name="$name" />
+@endif
