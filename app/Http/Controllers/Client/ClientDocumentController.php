@@ -21,7 +21,7 @@ class ClientDocumentController extends Controller
     {
         return view('control-panel.clients.show.documents', [
             'client' => $client,
-            'documents' => $client->getMedia(),
+            'documents' => $client->media()->latest()->paginate(10),
         ]);
     }
 
