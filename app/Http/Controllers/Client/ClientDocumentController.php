@@ -7,6 +7,7 @@ use App\Http\Requests\Document\StoreDocumentRequest;
 use App\Models\Client;
 use App\Services\DocumentService;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\File\Exception\UploadException;
 
 class ClientDocumentController extends Controller
 {
@@ -29,15 +30,16 @@ class ClientDocumentController extends Controller
      *
      * @param  \App\Http\Requests\Document\StoreDocumentRequest  $request
      * @param  \App\Models\Client  $client
+     * @param  \App\Services\DocumentService  $documentService
      * @return \Illuminate\Http\Response
      */
     public function store(StoreDocumentRequest $request, Client $client, DocumentService $documentService)
     {
-        if ($request->file('document')->isValid()) {
+        try {
             $documentService->store($client, $request->file('document'));
             session()->flash('success', 'File uploaded successfully');
         }
-        else {
+        catch (UploadException $exception) {
             session()->flash('error', 'Failed to upload the file');
         }
 
