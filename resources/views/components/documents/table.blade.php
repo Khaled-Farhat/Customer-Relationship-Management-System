@@ -1,5 +1,9 @@
 @props(['documents'])
 
+@error('name')
+  <x-alerts.toast :message="$message" color="danger" />
+@enderror
+
 @if ($documents->isEmpty())
   <div class="pt-3 pb-2">
     <h4 class="text-muted">No documents found.</h4>
@@ -9,6 +13,7 @@
     <thead>
       <tr>
         <th>File name</th>
+        <th>Uploaded at</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -22,8 +27,11 @@
             <form id="{{ $formId }}" method="POST" action="{{ route('documents.update', $document) }}">
               @csrf
               @method('PUT')
-              <x-forms.text name="name" :value="$document->name" />
+              <input type="text" name="name" value="{{ $document->name }}" class="form-control">
             </form>
+          </td>
+          <td>
+            {{ $document->created_at }}
           </td>
           <td>
             <x-buttons.anchor href="{{ route('documents.show', $document) }}" content="Download" size="small"
@@ -36,4 +44,5 @@
       @endforeach
     </tbody>
   </table>
+  {{ $documents->links() }}
 @endempty
