@@ -28,5 +28,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@example.com',
         ]);
+
+        User::factory()->count(15)->create();
     }
 }
