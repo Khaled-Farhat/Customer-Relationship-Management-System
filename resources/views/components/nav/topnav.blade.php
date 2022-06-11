@@ -9,7 +9,8 @@
       </a>
       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
         <li>
-          <a class="dropdown-item" href="#"><i class="bi bi-person-fill me-2"></i>Profile</a>
+          <a class="dropdown-item" href="{{ route('users.show', auth()->user()) }}"><i
+              class="bi bi-person-fill me-2"></i>Profile</a>
         </li>
         <li>
           <hr class="dropdown-divider">

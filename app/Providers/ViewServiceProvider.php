@@ -28,6 +28,10 @@ class ViewServiceProvider extends ServiceProvider
             View::share('activeNavItem', 'dashboard');
         });
 
+        View::composer('control-panel.users.*', function ($view) {
+            View::share('activeNavItem', 'users');
+        });
+
         View::composer('control-panel.organizations.*', function ($view) {
             View::share('activeNavItem', 'organizations');
         });
