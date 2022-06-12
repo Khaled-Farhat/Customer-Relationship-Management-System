@@ -28,7 +28,7 @@ class OrganizationDocumentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\Document\StoreDocumentRequest  $request
-     * @param  \App\Models\Organization  $Organization
+     * @param  \App\Models\Organization  $organization
      * @param  \App\Services\DocumentService  $documentService
      * @return \Illuminate\Http\Response
      */
