@@ -10,14 +10,14 @@
       <li class="nav-item px-2">
         <a class="nav-link @if ($activeNavItem === 'users') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
           href="{{ route('users.index') }}">
-          <i class="bi bi-person-fill me-2"></i>
+          <i class="bi bi-people-fill me-2"></i>
           Users
         </a>
       </li>
       <li class="nav-item px-2">
         <a class="nav-link @if ($activeNavItem === 'clients') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
           href="{{ route('clients.index') }}">
-          <i class="bi bi-person-fill me-2"></i>
+          <i class="bi bi-person-lines-fill me-2"></i>
           Clients
         </a>
       </li>
@@ -26,6 +26,13 @@
           href="{{ route('organizations.index') }}">
           <i class="bi bi-door-open-fill me-2"></i>
           Organizations
+        </a>
+      </li>
+      <li class="nav-item px-2">
+        <a class="nav-link @if ($activeNavItem === 'projects') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
+          href="{{ route('projects.index') }}">
+          <i class="bi bi-briefcase-fill me-2"></i>
+          Projects
         </a>
       </li>
     </ul>

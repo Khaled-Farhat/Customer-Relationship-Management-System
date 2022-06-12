@@ -60,7 +60,7 @@ class ClientController extends Controller
     {
         session()->reflash();
 
-        return redirect()->route('clients.documents.index', $client);
+        return redirect()->route('clients.projects.index', $client);
     }
 
     /**
@@ -105,11 +105,15 @@ class ClientController extends Controller
 
         session()->flash('success', 'Client deleted successfully');
 
-        if (url()->previous() === route('clients.documents.index', $client)) {
-            return redirect()->route('clients.index');
+        // when deleting from any 'show' page, redirect to the clients index
+        $clientShowSections = ['projects', 'documents'];
+        foreach ($clientShowSections as $section) {
+            $routeName ='clients.' . $section . '.index';
+            if (url()->previous() === route($routeName, $client)) {
+                return redirect()->route('clients.index');
+            }
         }
-        else {
-            return redirect()->back();
-        }
+
+        return redirect()->back();
     }
 }

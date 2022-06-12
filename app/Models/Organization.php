@@ -23,4 +23,9 @@ class Organization extends Model implements HasMedia
     {
         return $this->hasMany(Client::class);
     }
+
+    public function projects()
+    {
+        return $this->hasManyThrough(Project::class, Client::class);
+    }
 }

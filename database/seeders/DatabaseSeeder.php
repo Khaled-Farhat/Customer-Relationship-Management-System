@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Client;
 use App\Models\Organization;
+use App\Models\Project;
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,7 +26,35 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Organization::factory(15)->hasClients(15)->create();
+        Status::insert([
+            [
+                'name' => 'Open'
+            ], [
+                'name' => 'In-Progress',
+            ], [
+                'name' => 'Closed',
+            ],
+        ]);
+
+        Organization::factory()
+            ->count(11)
+            ->hasClients(3)
+            ->create();
+
+        $organizations = Organization::factory()
+            ->count(3)
+            ->hasClients(11)
+            ->create();
+
+        $organizations->each(function($organization) {
+            $organization->clients->each(function($client) {
+                Project::factory()
+                    ->count(11)
+                    ->for($client)
+                    ->create();
+            });
+        });
+
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@example.com',

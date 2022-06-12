@@ -56,9 +56,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('control-panel.users.show.show', [
-            'user' => $user,
-        ]);
+        session()->reflash();
+
+        return redirect()->route('users.projects.index', $user);
     }
 
     /**

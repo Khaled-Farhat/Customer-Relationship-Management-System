@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Http\Controllers\Project;
+
+use App\Http\Controllers\Controller;
+use App\Models\Project;
+use App\Services\DocumentService;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\File\Exception\UploadException;
+
+class ProjectDocumentController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \App\Models\Project  $project
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Project $project)
+    {
+        return view('control-panel.projects.show.documents', [
+            'project' => $project,
+            'documents' => $project
+                ->media()
+                ->latest()
+                ->paginate(10),
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\Document\StoreDocumentRequest  $request
+     * @param  \App\Models\Project  $Project
+     * @param  \App\Services\DocumentService  $documentService
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Project $project, Request $request, DocumentService $documentService)
+    {
+        try {
+            $documentService->store($project, $request->file('document'));
+            session()->flash('success', 'File uploaded successfully');
+        }
+        catch (UploadException $exception) {
+            session()->flash('error', 'Failed to upload the file');
+        }
+
+        return redirect()->back();
+    }
+}

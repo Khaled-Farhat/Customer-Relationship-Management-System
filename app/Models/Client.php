@@ -23,4 +23,9 @@ class Client extends Model implements HasMedia
     {
         return $this->belongsTo(Organization::class);
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

@@ -39,5 +39,9 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('control-panel.clients.*', function ($view) {
             View::share('activeNavItem', 'clients');
         });
+
+        View::composer('control-panel.projects.*', function ($view) {
+            View::share('activeNavItem', 'projects');
+        });
     }
 }
