@@ -1,35 +1,41 @@
 @props(['clients', 'showOrganization' => false])
 
-<table class="table-hover table align-middle">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone number</th>
-      @if ($showOrganization)
-        <th>Organization</th>
-      @endif
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach ($clients as $client)
+@if ($clients->isEmpty())
+  <div class="pt-3 pb-2">
+    <h4 class="text-muted">No clients found.</h4>
+  </div>
+@else
+  <table class="table-hover table align-middle">
+    <thead>
       <tr>
-        <td>{{ $client->name }}</td>
-        <td>{{ $client->email }}</td>
-        <td>{{ $client->phone }}</td>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone number</th>
         @if ($showOrganization)
-          <td><a
-              href="{{ route('organizations.show', $client->organization_id) }}">{{ $client->organization->name }}</a>
-          </td>
+          <th>Organization</th>
         @endif
-        <td>
-          <x-buttons.anchor :href="route('clients.show', $client)" content="Show" size="small" color="primary" />
-          <x-buttons.anchor :href="route('clients.edit', $client)" content="Edit" size="small" color="warning" />
-          <x-buttons.form :action="route('clients.destroy', $client)" content="Delete" size="small" color="danger" />
-        </td>
+        <th>Actions</th>
       </tr>
-    @endforeach
-  </tbody>
-</table>
-{{ $clients->links() }}
+    </thead>
+    <tbody>
+      @foreach ($clients as $client)
+        <tr>
+          <td>{{ $client->name }}</td>
+          <td>{{ $client->email }}</td>
+          <td>{{ $client->phone }}</td>
+          @if ($showOrganization)
+            <td><a
+                href="{{ route('organizations.show', $client->organization_id) }}">{{ $client->organization->name }}</a>
+            </td>
+          @endif
+          <td>
+            <x-buttons.anchor :href="route('clients.show', $client)" content="Show" size="small" color="primary" />
+            <x-buttons.anchor :href="route('clients.edit', $client)" content="Edit" size="small" color="warning" />
+            <x-buttons.form :action="route('clients.destroy', $client)" content="Delete" size="small" color="danger" />
+          </td>
+        </tr>
+      @endforeach
+    </tbody>
+  </table>
+  {{ $clients->links() }}
+@endif

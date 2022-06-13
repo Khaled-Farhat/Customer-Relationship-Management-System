@@ -45,4 +45,4 @@
     </tbody>
   </table>
   {{ $documents->links() }}
-@endempty
+@endif
