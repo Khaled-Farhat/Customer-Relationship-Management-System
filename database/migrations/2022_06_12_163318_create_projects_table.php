@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('deadline');
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
