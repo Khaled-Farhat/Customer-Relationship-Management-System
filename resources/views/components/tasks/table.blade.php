@@ -22,7 +22,13 @@
         <tr>
           <td>{{ $task->title }}</td>
           <td><a href="{{ route('projects.show', $task->project) }}">{{ $task->project->title }}</a></td>
-          <td><a href="{{ route('users.show', $task->user) }}">{{ $task->user->name }}</a></td>
+          <td>
+            @isset($task->user)
+              <a href="{{ route('users.show', $task->user) }}">{{ $task->user->name }}</a>
+            @else
+              Deleted user
+            @endisset
+          </td>
           <td>{{ $task->deadline->toDateString() }}</td>
           <td>{{ $task->created_at->toDateString() }}</td>
           <td>{{ $task->status->name }}</td>

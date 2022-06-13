@@ -22,7 +22,13 @@
         <tr>
           <td>{{ $project->title }}</td>
           <td><a href="{{ route('clients.show', $project->client) }}">{{ $project->client->name }}</a></td>
-          <td><a href="{{ route('users.show', $project->manager) }}">{{ $project->manager->name }}</a></td>
+          <td>
+            @isset($project->manager)
+              <a href="{{ route('users.show', $project->manager) }}">{{ $project->manager->name }}</a>
+            </td>
+          @else
+            Deleted user
+          @endisset
           <td>{{ $project->deadline->toDateString() }}</td>
           <td>{{ $project->created_at->toDateString() }}</td>
           <td>{{ $project->status->name }}</td>
