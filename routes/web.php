@@ -11,6 +11,8 @@ use App\Http\Controllers\Organization\OrganizationDocumentController;
 use App\Http\Controllers\Organization\OrganizationProjectController;
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\Project\ProjectDocumentController;
+use App\Http\Controllers\Task\TaskController;
+use App\Http\Controllers\Task\TaskDocumentController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\UserProjectController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +49,9 @@ Route::middleware('auth')->group(function() {
 
     Route::resource('projects', ProjectController::class);
     Route::resource('projects.documents', ProjectDocumentController::class)->only(['index', 'store']);
+
+    Route::resource('tasks', TaskController::class);
+    Route::resource('tasks.documents', TaskDocumentController::class)->only(['index', 'store']);
 
     Route::resource('documents', DocumentController::class)->only(['show', 'update', 'destroy']);
 });
