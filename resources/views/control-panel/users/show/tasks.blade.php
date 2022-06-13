@@ -4,7 +4,7 @@
 ])
 
 @section('button')
-  <x-buttons.anchor :href="route('tasks.create')" content="Create task" color="success" class="mb-2" />
+  <x-tasks.tasks-table-actions />
 @endsection
 
 @section('table')

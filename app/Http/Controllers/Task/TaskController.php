@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Task;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Task\GetTasksRequest;
 use App\Http\Requests\Task\StoreTaskRequest;
 use App\Http\Requests\Task\UpdateTaskRequest;
 use App\Models\Project;
@@ -16,11 +17,13 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Http\Requests\Task\GetTasksRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(GetTasksRequest $request)
     {
-        $tasks = Task::latest()
+        $tasks = Task::filter($request->filters())
+            ->latest()
             ->with(['project', 'user', 'status'])
             ->paginate(10);
 

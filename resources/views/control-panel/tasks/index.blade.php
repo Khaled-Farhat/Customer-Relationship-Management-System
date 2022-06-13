@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('heading')
-  <x-buttons.anchor :href="route('tasks.create')" content="Create task" color="success" />
+  <x-tasks.tasks-table-actions />
 @endsection
 
 @section('table')
