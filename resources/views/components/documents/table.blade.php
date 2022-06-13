@@ -31,7 +31,7 @@
             </form>
           </td>
           <td>
-            {{ $document->created_at }}
+            {{ $document->created_at->toDateString() }}
           </td>
           <td>
             <x-buttons.anchor href="{{ route('documents.show', $document) }}" content="Download" size="small"
