@@ -16,6 +16,7 @@ use App\Http\Controllers\Task\TaskController;
 use App\Http\Controllers\Task\TaskDocumentController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\UserProjectController;
+use App\Http\Controllers\User\UserTaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function() {
     Route::resource('users', UserController::class);
     Route::resource('users.projects', UserProjectController::class)->only(['index']);
+    Route::resource('users.tasks', UserTaskController::class)->only(['index']);
 
     Route::resource('clients', ClientController::class);
     Route::resource('clients.projects', ClientProjectController::class)->only(['index']);
