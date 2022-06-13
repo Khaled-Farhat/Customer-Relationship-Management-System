@@ -4,7 +4,7 @@
 ])
 
 @section('button')
-  <x-tasks.tasks-table-actions />
+  <x-tasks.table-actions class="mb-2" />
 @endsection
 
 @section('table')

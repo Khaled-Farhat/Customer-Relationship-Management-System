@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('heading')
-  <x-projects.project-table-actions />
+  <x-projects.table-actions />
 @endsection
 
 @section('table')

@@ -4,7 +4,7 @@
 ])
 
 @section('button')
-  <x-projects.project-table-actions class="mb-2" />
+  <x-projects.table-actions class="mb-2" />
 @endsection
 
 @section('table')
