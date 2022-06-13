@@ -31,6 +31,10 @@
           <h6 class="card-subtitle text-muted mb-1">Deadline</h6>
           <h6 class="card-subtitle">{{ $project->deadline->toDateString() }}</h6>
         </div>
+        <div class="mb-3">
+            <h6 class="card-subtitle text-muted mb-1">Created at</h6>
+            <h6 class="card-subtitle">{{ $project->created_at->toDateString() }}</h6>
+          </div>
         <div class="align-bottom">
           <h6 class="card-subtitle text-muted mb-1">Status</h6>
           <h6 class="card-subtitle">{{ $project->status->name }}</h6>
