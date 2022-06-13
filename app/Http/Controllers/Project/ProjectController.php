@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Project;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Project\GetProjectsRequest;
 use App\Http\Requests\Project\StoreProjectRequest;
 use App\Http\Requests\Project\UpdateProjectRequest;
 use App\Models\Client;
@@ -16,11 +17,13 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Http\Requests\Project\GetProjectsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(GetProjectsRequest $request)
     {
         $projects = Project::latest()
+            ->filter($request->filters())
             ->with(['client', 'manager', 'status'])
             ->paginate(10);
 

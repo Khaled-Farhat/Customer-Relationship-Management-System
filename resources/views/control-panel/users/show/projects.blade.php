@@ -4,7 +4,7 @@
 ])
 
 @section('button')
-  <x-buttons.anchor :href="route('projects.create')" content="Create project" color="success" class="mb-2" />
+  <x-projects.project-table-actions class="mb-2" />
 @endsection
 
 @section('table')

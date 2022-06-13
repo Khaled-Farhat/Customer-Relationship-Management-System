@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('heading')
-  <x-buttons.anchor :href="route('projects.create')" content="Create project" color="success" />
+  <x-projects.project-table-actions />
 @endsection
 
 @section('table')

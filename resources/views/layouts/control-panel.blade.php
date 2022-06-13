@@ -39,11 +39,13 @@
   @endif
 
   <script>
-    $(document).ready(function() {
-      $('.toast').toast({
-        "autohide": false
-      }).toast('show');
-    })
+    @section('script')
+      $(document).ready(function() {
+        $('.toast').toast({
+          "autohide": false
+        }).toast('show');
+      })
+    @show
   </script>
 </body>
 
