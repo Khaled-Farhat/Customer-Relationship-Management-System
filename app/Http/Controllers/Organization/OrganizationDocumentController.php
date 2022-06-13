@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Organization;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Document\StoreDocumentRequest;
 use App\Models\Organization;
 use App\Services\DocumentService;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class OrganizationDocumentController extends Controller
      * @param  \App\Services\DocumentService  $documentService
      * @return \Illuminate\Http\Response
      */
-    public function store(Organization $organization, Request $request, DocumentService $documentService)
+    public function store(StoreDocumentRequest $request, Organization $organization, DocumentService $documentService)
     {
         try {
             $documentService->store($organization, $request->file('document'));

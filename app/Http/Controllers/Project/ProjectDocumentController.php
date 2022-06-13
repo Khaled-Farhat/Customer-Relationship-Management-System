@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Project;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Document\StoreDocumentRequest;
 use App\Models\Project;
 use App\Services\DocumentService;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ class ProjectDocumentController extends Controller
      * @param  \App\Services\DocumentService  $documentService
      * @return \Illuminate\Http\Response
      */
-    public function store(Project $project, Request $request, DocumentService $documentService)
+    public function store(StoreDocumentRequest $request, Project $project, DocumentService $documentService)
     {
         try {
             $documentService->store($project, $request->file('document'));
