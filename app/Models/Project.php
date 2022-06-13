@@ -37,6 +37,11 @@ class Project extends Model implements HasMedia
         return $this->belongsTo(Status::class);
     }
 
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
     public function getDeadlineAttribute($deadline)
     {
         return Carbon::parse($deadline);

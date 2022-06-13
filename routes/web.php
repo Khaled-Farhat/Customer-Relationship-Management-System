@@ -11,6 +11,7 @@ use App\Http\Controllers\Organization\OrganizationDocumentController;
 use App\Http\Controllers\Organization\OrganizationProjectController;
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\Project\ProjectDocumentController;
+use App\Http\Controllers\Project\ProjectTaskController;
 use App\Http\Controllers\Task\TaskController;
 use App\Http\Controllers\Task\TaskDocumentController;
 use App\Http\Controllers\User\UserController;
@@ -48,6 +49,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('organizations.documents', OrganizationDocumentController::class)->only(['index', 'store']);
 
     Route::resource('projects', ProjectController::class);
+    Route::resource('projects.tasks', ProjectTaskController::class)->only(['index']);
     Route::resource('projects.documents', ProjectDocumentController::class)->only(['index', 'store']);
 
     Route::resource('tasks', TaskController::class);

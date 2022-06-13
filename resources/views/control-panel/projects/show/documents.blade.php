@@ -1,6 +1,6 @@
 @extends('control-panel.projects.show.layout', [
     'project' => $project,
-    'activeOrganizationNav' => 'documents',
+    'activeProjectNav' => 'documents',
 ])
 
 @include('layouts.documents.index', [

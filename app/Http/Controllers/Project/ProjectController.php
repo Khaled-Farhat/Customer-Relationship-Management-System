@@ -68,7 +68,7 @@ class ProjectController extends Controller
     {
         session()->reflash();
 
-        return redirect()->route('projects.documents.index', $project);
+        return redirect()->route('projects.tasks.index', $project);
     }
 
     /**

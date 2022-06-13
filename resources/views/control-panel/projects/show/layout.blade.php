@@ -8,7 +8,7 @@
 
 @section('subnav')
   @include('control-panel.projects.show.partials.sidenav', [
-      'activeOrganizationNav' => $activeOrganizationNav,
+      'activeProjectNav' => $activeProjectNav,
   ])
 @endsection
 
