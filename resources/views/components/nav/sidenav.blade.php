@@ -1,3 +1,9 @@
+@php
+if (!isset($activeNavItem)) {
+    $activeNavItem = null;
+}
+@endphp
+
 <nav class="navbar position-fixed navbar-expand-lg bg-dark d-flex align-items-start h-100">
   <div class="container px-4">
     <ul class="navbar-nav flex-column mx-auto">
