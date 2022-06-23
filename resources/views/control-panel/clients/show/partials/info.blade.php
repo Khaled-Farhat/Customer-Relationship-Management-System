@@ -23,7 +23,11 @@
     <div class="ps-2">
       <h6 class="card-subtitle text-muted mb-1">Organization</h6>
       <h6 class="card-subtitle">
-        <a href="{{ route('organizations.show', $client->organization) }}">{{ $client->organization->name }}</a>
+        @can('view', $client->organization)
+          <a href="{{ route('organizations.show', $client->organization) }}">{{ $client->organization->name }}</a>
+        @else
+          <p class="my-auto">{{ $client->organization->name }}</p>
+        @endcan
       </h6>
     </div>
   </div>

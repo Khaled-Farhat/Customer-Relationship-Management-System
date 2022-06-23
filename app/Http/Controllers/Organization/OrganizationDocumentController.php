@@ -19,6 +19,8 @@ class OrganizationDocumentController extends Controller
      */
     public function index(Organization $organization)
     {
+        $this->authorize('view', $organization);
+
         return view('control-panel.organizations.show.documents', [
             'organization' => $organization,
             'documents' => $organization->media()->latest()->paginate(10),

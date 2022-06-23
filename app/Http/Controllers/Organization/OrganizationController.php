@@ -17,6 +17,8 @@ class OrganizationController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Organization::class);
+
         $organizations = Organization::latest()
             ->withCount('projects')
             ->paginate(10);
@@ -33,6 +35,8 @@ class OrganizationController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Organization::class);
+
         return view('control-panel.organizations.create');
     }
 
@@ -59,6 +63,8 @@ class OrganizationController extends Controller
      */
     public function show(Organization $organization)
     {
+        $this->authorize('view', $organization);
+
         session()->reflash();
 
         return redirect()->route('organizations.clients.index', $organization);
@@ -72,6 +78,8 @@ class OrganizationController extends Controller
      */
     public function edit(Organization $organization)
     {
+        $this->authorize('update', $organization);
+
         return view('control-panel.organizations.edit', [
             'organization' => $organization,
         ]);
@@ -101,6 +109,8 @@ class OrganizationController extends Controller
      */
     public function destroy(Organization $organization)
     {
+        $this->authorize('delete', $organization);
+
         $organization->delete();
 
         session()->flash('success', 'Organization deleted successfully');

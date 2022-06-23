@@ -31,6 +31,7 @@ if (!isset($activeNavItem)) {
         </a>
       </li>
       @endcan
+      @can('viewAny', App\Models\Organization::class)
       <li class="nav-item px-2">
         <a class="nav-link @if ($activeNavItem === 'organizations') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
           href="{{ route('organizations.index') }}">
@@ -38,6 +39,7 @@ if (!isset($activeNavItem)) {
           Organizations
         </a>
       </li>
+      @endcan
       <li class="nav-item px-2">
         <a class="nav-link @if ($activeNavItem === 'projects') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
           href="{{ route('projects.index') }}">

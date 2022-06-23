@@ -18,6 +18,8 @@ class OrganizationProjectController extends Controller
      */
     public function index(GetProjectsRequest $request, Organization $organization)
     {
+        $this->authorize('view', $organization);
+
         return view('control-panel.organizations.show.projects', [
             'organization' => $organization,
             'projects' => $organization

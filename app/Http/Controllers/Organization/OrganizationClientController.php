@@ -16,6 +16,8 @@ class OrganizationClientController extends Controller
      */
     public function index(Organization $organization)
     {
+        $this->authorize('view', $organization);
+
         return view('control-panel.organizations.show.clients', [
             'organization' => $organization,
             'clients' => $organization->clients()->latest()->paginate(10),

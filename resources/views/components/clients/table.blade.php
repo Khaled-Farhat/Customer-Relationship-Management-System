@@ -24,8 +24,13 @@
           <td>{{ $client->email }}</td>
           <td>{{ $client->phone }}</td>
           @if ($showOrganization)
-            <td><a
-                href="{{ route('organizations.show', $client->organization_id) }}">{{ $client->organization->name }}</a>
+            <td>
+              @can('view', $client->organization)
+                <a
+                  href="{{ route('organizations.show', $client->organization) }}">{{ $client->organization->name }}</a>
+              @else
+                <p class="my-auto">{{ $client->organization->name }}</p>
+              @endcan
             </td>
           @endif
           <td>
