@@ -11,6 +11,7 @@
         <th>Name</th>
         <th>Website</th>
         <th>Address</th>
+        <th>Projects count</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -20,6 +21,7 @@
           <td>{{ $organization->name }}</td>
           <td><a href="{{ $organization->website }}">Link</a></td>
           <td>{{ $organization->address }}</td>
+          <td>{{ $organization->projects_count }}</td>
           <td>
             <x-buttons.anchor :href="route('organizations.show', $organization)" content="Show" size="small" color="primary" />
             <x-buttons.anchor :href="route('organizations.edit', $organization)" content="Edit" size="small" color="warning" />
