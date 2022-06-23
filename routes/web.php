@@ -12,6 +12,9 @@ use App\Http\Controllers\Organization\OrganizationProjectController;
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\Project\ProjectDocumentController;
 use App\Http\Controllers\Project\ProjectTaskController;
+use App\Http\Controllers\Role\RoleController;
+use App\Http\Controllers\Role\RolePermissionController;
+use App\Http\Controllers\Role\RoleUserController;
 use App\Http\Controllers\Task\TaskController;
 use App\Http\Controllers\Task\TaskDocumentController;
 use App\Http\Controllers\User\UserController;
@@ -58,5 +61,9 @@ Route::middleware('auth')->group(function() {
     Route::resource('tasks.documents', TaskDocumentController::class)->only(['index', 'store']);
 
     Route::resource('documents', DocumentController::class)->only(['show', 'update', 'destroy']);
+
+    Route::resource('roles', RoleController::class);
+    Route::resource('roles.permissions', RolePermissionController::class)->only(['index']);
+    Route::resource('roles.users', RoleUserController::class)->only(['index']);
 });
 

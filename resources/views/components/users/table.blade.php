@@ -1,29 +1,37 @@
 @props(['users'])
 
-<table class="table-hover table align-middle">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone number</th>
-      <th>Address</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach ($users as $user)
+@if ($users->isEmpty())
+  <div class="pt-3 pb-2">
+    <h4 class="text-muted">No users found.</h4>
+  </div>
+@else
+  <table class="table-hover table align-middle">
+    <thead>
       <tr>
-        <td>{{ $user->name }}</td>
-        <td>{{ $user->email }}</td>
-        <td>{{ $user->phone }}</td>
-        <td>{{ $user->address }}</td>
-        <td>
-          <x-buttons.anchor :href="route('users.show', $user)" content="Show" size="small" color="primary" />
-          <x-buttons.anchor :href="route('users.edit', $user)" content="Edit" size="small" color="warning" />
-          <x-buttons.form :action="route('users.destroy', $user)" content="Delete" size="small" color="danger" />
-        </td>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone number</th>
+        <th>Address</th>
+        <th>Role</th>
+        <th>Actions</th>
       </tr>
-    @endforeach
-  </tbody>
-</table>
-{{ $users->links() }}
+    </thead>
+    <tbody>
+      @foreach ($users as $user)
+        <tr>
+          <td>{{ $user->name }}</td>
+          <td>{{ $user->email }}</td>
+          <td>{{ $user->phone }}</td>
+          <td>{{ $user->address }}</td>
+          <td>{{ $user->roles->first()->title }}</td>
+          <td>
+            <x-buttons.anchor :href="route('users.show', $user)" content="Show" size="small" color="primary" />
+            <x-buttons.anchor :href="route('users.edit', $user)" content="Edit" size="small" color="warning" />
+            <x-buttons.form :action="route('users.destroy', $user)" content="Delete" size="small" color="danger" />
+          </td>
+        </tr>
+      @endforeach
+    </tbody>
+  </table>
+  {{ $users->links() }}
+@endif

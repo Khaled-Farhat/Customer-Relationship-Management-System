@@ -72,5 +72,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->count(15)->create();
+
+        $this->call(PermissionsSeeder::class);
     }
 }

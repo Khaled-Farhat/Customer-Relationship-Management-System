@@ -19,7 +19,9 @@ class UserController extends Controller
     public function index()
     {
         return view('control-panel.users.index', [
-            'users' => User::latest()->paginate(10),
+            'users' => User::latest()
+                ->with('roles:title')
+                ->paginate(10),
         ]);
     }
 

@@ -21,9 +21,13 @@
       </div>
     </div>
     <div class="ps-2">
-      <div class="align-bottom">
+      <div class="mb-3">
         <h6 class="card-subtitle text-muted mb-1">Address</h6>
         <h6 class="card-subtitle">{{ $user->address }}</h6>
+      </div>
+      <div class="align-bottom">
+        <h6 class="card-subtitle text-muted mb-1">Role</h6>
+        <h6 class="card-subtitle">{{ $user->roles->first()->title }}</h6>
       </div>
     </div>
   </div>

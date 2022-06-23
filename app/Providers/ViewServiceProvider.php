@@ -47,5 +47,9 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('control-panel.tasks.*', function ($view) {
             View::share('activeNavItem', 'tasks');
         });
+
+        View::composer('control-panel.roles.*', function ($view) {
+            View::share('activeNavItem', 'roles');
+        });
     }
 }
