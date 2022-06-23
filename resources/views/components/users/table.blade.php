@@ -25,9 +25,15 @@
           <td>{{ $user->address }}</td>
           <td>{{ $user->roles->first()->title }}</td>
           <td>
-            <x-buttons.anchor :href="route('users.show', $user)" content="Show" size="small" color="primary" />
-            <x-buttons.anchor :href="route('users.edit', $user)" content="Edit" size="small" color="warning" />
-            <x-buttons.form :action="route('users.destroy', $user)" content="Delete" size="small" color="danger" />
+            @can('view', $user)
+              <x-buttons.anchor :href="route('users.show', $user)" content="Show" size="small" color="primary" />
+            @endcan
+            @can('update', $user)
+              <x-buttons.anchor :href="route('users.edit', $user)" content="Edit" size="small" color="warning" />
+            @endcan
+            @can('delete', $user)
+              <x-buttons.form :action="route('users.destroy', $user)" content="Delete" size="small" color="danger" />
+            @endcan
           </td>
         </tr>
       @endforeach

@@ -18,6 +18,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', User::class);
+
         return view('control-panel.users.index', [
             'users' => User::latest()
                 ->with('roles:title')
@@ -32,6 +34,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', User::class);
+
         return view('control-panel.users.create');
     }
 
@@ -58,6 +62,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $this->authorize('view', $user);
+
         session()->reflash();
 
         return redirect()->route('users.projects.index', $user);
@@ -71,6 +77,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
+
         return view('control-panel.users.edit', [
             'user' => $user,
         ]);
@@ -109,6 +117,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('delete', $user);
+
         $user->delete();
 
         session()->flash('success', 'User deleted successfully');

@@ -4,7 +4,7 @@
 ])
 
 @section('button')
-  <x-buttons.anchor :href="route('users.create')" content="Create user" color="success" class="mb-2" />
+  <x-users.table-actions />
 @endsection
 
 @section('table')

@@ -21,7 +21,11 @@
         <h6 class="card-subtitle text-muted mb-1">Manager</h6>
         <h6 class="card-subtitle">
           @isset($project->manager)
-            <a href="{{ route('users.show', $project->manager) }}">{{ $project->manager->name }}</a>
+            @can('view', $project->manager)
+              <a href="{{ route('users.show', $project->manager) }}">{{ $project->manager->name }}</a>
+            @else
+              <p class="my-auto">{{ $project->manager->name }}</p>
+            @endcan
           @else
             Deleted user
           @endisset

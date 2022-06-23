@@ -13,13 +13,15 @@ if (!isset($activeNavItem)) {
           Dashboard
         </a>
       </li>
-      <li class="nav-item px-2">
-        <a class="nav-link @if ($activeNavItem === 'users') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
-          href="{{ route('users.index') }}">
-          <i class="bi bi-people-fill me-2"></i>
-          Users
-        </a>
-      </li>
+      @can('viewAny', App\Models\User::class)
+        <li class="nav-item px-2">
+          <a class="nav-link @if ($activeNavItem === 'users') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
+            href="{{ route('users.index') }}">
+            <i class="bi bi-people-fill me-2"></i>
+            Users
+          </a>
+        </li>
+      @endcan
       <li class="nav-item px-2">
         <a class="nav-link @if ($activeNavItem === 'clients') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
           href="{{ route('clients.index') }}">

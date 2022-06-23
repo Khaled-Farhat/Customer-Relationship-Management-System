@@ -21,7 +21,11 @@
         <h6 class="card-subtitle text-muted mb-1">Assigned</h6>
         <h6 class="card-subtitle">
           @isset($task->user)
-            <a href="{{ route('users.show', $task->user) }}">{{ $task->user->name }}</a>
+            @can('view', $task->user)
+              <a href="{{ route('users.show', $task->user) }}">{{ $task->user->name }}</a>
+            @else
+              <p class="my-auto">{{ $task->user->name }}</p>
+            @endcan
           @else
             Deleted user
           @endisset

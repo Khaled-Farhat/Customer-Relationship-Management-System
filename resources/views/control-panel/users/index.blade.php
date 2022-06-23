@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('heading')
-  <x-buttons.anchor :href="route('users.create')" content="Create user" color="success" />
+    <x-users.table-actions />
 @endsection
 
 @section('table')
