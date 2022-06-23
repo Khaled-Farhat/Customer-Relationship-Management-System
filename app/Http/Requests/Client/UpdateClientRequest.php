@@ -26,9 +26,9 @@ class UpdateClientRequest extends FormRequest
     {
         return [
             'organization_id' => ['required', 'exists:organizations,id'],
-            'name' => ['required', 'string', 'max:255', Rule::unique('clients', 'name')->ignore($this->route('client'))],
-            'email' => ['required', 'email', Rule::unique('clients', 'email')->ignore($this->route('client'))],
-            'phone' => ['required', 'string', Rule::unique('clients', 'phone')->ignore($this->route('client'))],
+            'name' => ['required', 'string', 'max:255', Rule::unique('clients', 'name')->ignore($this->client)],
+            'email' => ['required', 'email', Rule::unique('clients', 'email')->ignore($this->client)],
+            'phone' => ['required', 'string', Rule::unique('clients', 'phone')->ignore($this->client)],
         ];
     }
 }

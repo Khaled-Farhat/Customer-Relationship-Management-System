@@ -25,7 +25,7 @@ class UpdateOrganizationRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255', Rule::unique('organizations', 'name')->ignore($this->route('organization'))],
+            'name' => ['required', 'string', 'max:255', Rule::unique('organizations', 'name')->ignore($this->organization)],
             'website' => ['required', 'string', 'max:255', 'url'],
             'address' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],

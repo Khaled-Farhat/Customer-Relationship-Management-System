@@ -30,8 +30,8 @@ class UpdateDocumentRequest extends FormRequest
                 'string',
                 Rule::unique('media')->where(function($query) {
                     return $query
-                                ->where('model_type', $this->route('document')->model_type)
-                                ->where('model_id', $this->route('document')->model_id)
+                                ->where('model_type', $this->document->model_type)
+                                ->where('model_id', $this->document->model_id)
                                 ->where('name', $this->name);
                 })->ignore($this->route('document')),
             ],
