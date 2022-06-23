@@ -29,9 +29,15 @@
             </td>
           @endif
           <td>
-            <x-buttons.anchor :href="route('clients.show', $client)" content="Show" size="small" color="primary" />
-            <x-buttons.anchor :href="route('clients.edit', $client)" content="Edit" size="small" color="warning" />
-            <x-buttons.form :action="route('clients.destroy', $client)" content="Delete" size="small" color="danger" />
+            @can('view', $client)
+              <x-buttons.anchor :href="route('clients.show', $client)" content="Show" size="small" color="primary" />
+            @endcan
+            @can('update', $client)
+              <x-buttons.anchor :href="route('clients.edit', $client)" content="Edit" size="small" color="warning" />
+            @endcan
+            @can('delete', $client)
+              <x-buttons.form :action="route('clients.destroy', $client)" content="Delete" size="small" color="danger" />
+            @endcan
           </td>
         </tr>
       @endforeach

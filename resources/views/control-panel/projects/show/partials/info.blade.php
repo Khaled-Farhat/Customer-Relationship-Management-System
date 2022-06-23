@@ -14,7 +14,11 @@
       <div class="mb-3">
         <h6 class="card-subtitle text-muted mb-1">Client</h6>
         <h6 class="card-subtitle">
-          <a href="{{ route('clients.show', $project->client) }}">{{ $project->client->name }}</a>
+          @can('view', $project->client)
+            <a href="{{ route('clients.show', $project->client) }}">{{ $project->client->name }}</a>
+          @else
+            <p class="my-auto">{{ $project->client->name }}</p>
+          @endcan
         </h6>
       </div>
       <div class="align-bottom">

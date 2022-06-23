@@ -18,6 +18,8 @@ class ClientController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Client::class);
+
         return view('control-panel.clients.index', [
             'clients' => Client::latest()->with('organization:id,name')->paginate(10),
         ]);
@@ -30,6 +32,8 @@ class ClientController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Client::class);
+
         return view('control-panel.clients.create', [
             'organizations' => Organization::pluck('id', 'name'),
         ]);
@@ -58,6 +62,8 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
+        $this->authorize('view', $client);
+
         session()->reflash();
 
         return redirect()->route('clients.projects.index', $client);
@@ -71,6 +77,8 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
+        $this->authorize('update', $client);
+
         return view('control-panel.clients.edit', [
             'client' => $client,
             'organizations' => Organization::pluck('id', 'name'),
@@ -101,6 +109,8 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
+        $this->authorize('delete', $client);
+
         $client->delete();
 
         session()->flash('success', 'Client deleted successfully');

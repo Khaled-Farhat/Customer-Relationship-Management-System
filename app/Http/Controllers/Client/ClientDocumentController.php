@@ -19,6 +19,8 @@ class ClientDocumentController extends Controller
      */
     public function index(Client $client)
     {
+        $this->authorize('view', $client);
+
         return view('control-panel.clients.show.documents', [
             'client' => $client,
             'documents' => $client->media()->latest()->paginate(10),

@@ -18,6 +18,8 @@ class ClientProjectController extends Controller
      */
     public function index(GetProjectsRequest $request, Client $client)
     {
+        $this->authorize('view', $client);
+
         return view('control-panel.clients.show.projects', [
             'client' => $client,
             'projects' => $client

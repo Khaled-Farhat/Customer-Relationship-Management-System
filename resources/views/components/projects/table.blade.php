@@ -21,7 +21,13 @@
       @foreach ($projects as $project)
         <tr>
           <td>{{ $project->title }}</td>
-          <td><a href="{{ route('clients.show', $project->client) }}">{{ $project->client->name }}</a></td>
+          <td>
+            @can('view', $project->client)
+              <a href="{{ route('clients.show', $project->client) }}">{{ $project->client->name }}</a>
+            @else
+              <p class="my-auto">{{ $project->client->name }}</p>
+            @endcan
+          </td>
           <td>
             @isset($project->manager)
               @can('view', $project->manager)
