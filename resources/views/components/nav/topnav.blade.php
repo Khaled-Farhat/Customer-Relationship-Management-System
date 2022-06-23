@@ -16,9 +16,20 @@
           <hr class="dropdown-divider">
         </li>
         <li>
-          <a class="dropdown-item" href="#"><i class="bi bi-box-arrow-left me-2"></i>Sign out</a>
+          <form id="logout-form" method="POST" action="{{ route('logout') }}">
+            @csrf
+          </form>
+          <a class="dropdown-item" id="logout-anchor" href=""><i class="bi bi-box-arrow-left me-2"></i>Sign out</a>
         </li>
       </ul>
     </li>
   </div>
 </nav>
+
+@section('script')
+  @parent
+  document.getElementById('logout-anchor').addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById('logout-form').submit();
+  });
+@endsection
