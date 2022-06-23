@@ -18,6 +18,8 @@ class UserProjectController extends Controller
      */
     public function index(GetProjectsRequest $request, User $user)
     {
+        $this->authorize('view', $user);
+
         return view('control-panel.users.show.projects', [
             'user' => $user,
             'projects' => $user

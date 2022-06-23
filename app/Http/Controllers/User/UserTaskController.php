@@ -19,6 +19,8 @@ class UserTaskController extends Controller
      */
     public function index(GetTasksRequest $request, User $user)
     {
+        $this->authorize('view', $user);
+
         return view('control-panel.users.show.tasks', [
             'user' => $user,
             'tasks' => $user
