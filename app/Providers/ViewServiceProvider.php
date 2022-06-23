@@ -24,7 +24,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('control-panel.*', function ($view) {
+        View::composer('control-panel.dashboard', function ($view) {
             View::share('activeNavItem', 'dashboard');
         });
 

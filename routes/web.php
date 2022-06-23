@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Client\ClientDocumentController;
 use App\Http\Controllers\Client\ClientProjectController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Document\DocumentController;
 use App\Http\Controllers\Organization\OrganizationController;
 use App\Http\Controllers\Organization\OrganizationClientController;
@@ -40,6 +41,8 @@ Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function() {
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::resource('users', UserController::class);
     Route::resource('users.projects', UserProjectController::class)->only(['index']);
     Route::resource('users.tasks', UserTaskController::class)->only(['index']);

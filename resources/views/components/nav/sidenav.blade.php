@@ -8,7 +8,7 @@ if (!isset($activeNavItem)) {
   <div class="container px-4">
     <ul class="navbar-nav flex-column mx-auto">
       <li class="nav-item @if ($activeNavItem === 'dashboard') bg-primary bg-gradient @endif rounded px-2">
-        <a class="nav-link ps-2 pe-5 text-white" aria-current="page" href="#">
+        <a class="nav-link ps-2 pe-5 text-white" aria-current="page" href="{{ route('dashboard') }}">
           <i class="bi bi-house-door-fill me-2"></i>
           Dashboard
         </a>
