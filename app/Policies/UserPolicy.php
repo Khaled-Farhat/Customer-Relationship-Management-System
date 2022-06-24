@@ -75,7 +75,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        if (Bouncer::is($model)->a('super-admin')) {
+        if ($model->isA('super-admin')) {
             return false;
         }
         else {
