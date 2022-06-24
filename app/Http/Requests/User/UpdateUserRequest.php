@@ -14,7 +14,12 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('update', $this->user);
+        if ($this->has('role_title') && $this->user()->cannot('updateRole', $this->user)) {
+            return false;
+        }
+        else {
+            return $this->user()->can('update', $this->user);
+        }
     }
 
     /**
@@ -47,6 +52,9 @@ class UpdateUserRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
+            ],
+            'role_title' => ['sometimes',
+                'exists:roles,title'
             ],
             'password' => [
                 'sometimes',

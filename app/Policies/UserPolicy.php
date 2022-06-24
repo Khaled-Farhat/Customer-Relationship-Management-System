@@ -84,6 +84,23 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the user can update the model role.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function updateRole(User $user, ?User $model)
+    {
+        if ($model->isA('super-admin')) {
+            return false;
+        }
+        else {
+            return $user->can('edit-user-role');
+        }
+    }
+
+    /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user

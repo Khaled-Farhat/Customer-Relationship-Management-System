@@ -10,6 +10,11 @@
 <div class="mb-3">
   <x-forms.text name="address" label="Address" :value="optional($user)->address" />
 </div>
+@can('updateRole', $user)
+  <div class="mb-3">
+    <x-forms.select name="role_title" label="Role" :options="$roles" :selected="$user->roles->first()->title" />
+  </div>
+@endcan
 <div class="mb-3">
   <x-forms.password name="password" label="Password" />
 </div>

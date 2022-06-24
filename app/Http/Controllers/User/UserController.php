@@ -8,6 +8,7 @@ use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Silber\Bouncer\BouncerFacade as Bouncer;
 
 class UserController extends Controller
 {
@@ -48,6 +49,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->validated());
+        $user->assign('user'); // assign user role
 
         session()->flash('success', 'User created successfully');
 
@@ -79,9 +81,15 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
-        return view('control-panel.users.edit', [
+        $data = [
             'user' => $user,
-        ]);
+        ];
+
+        if (request()->user()->can('updateRole', $user)) {
+            $data['roles'] =  Bouncer::role()->pluck('title', 'title');
+        }
+
+        return view('control-panel.users.edit', $data);
     }
 
     /**
@@ -94,6 +102,12 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $input = $request->validated();
+
+        if (isset($input['role_title'])) {
+            $role = Bouncer::role()->firstWhere('title', $input['role_title']);
+            Bouncer::sync($user)->roles([$role]);
+            unset($input['role_title']);
+        }
 
         if (!$request->filled('password')) {
             unset($input['password']);

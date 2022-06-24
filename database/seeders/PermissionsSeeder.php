@@ -33,6 +33,7 @@ class PermissionsSeeder extends Seeder
             'delete-any',
         ];
 
+        Bouncer::allow('super-admin')->to('edit-user-role');
         foreach ($classes as $class) {
             foreach ($operations as $operation) {
                 $permission = $operation  . '-' . $class;
@@ -53,10 +54,10 @@ class PermissionsSeeder extends Seeder
             }
         }
 
-        $users = User::all();
-        $users->reject(function($user) {
-            return $user->email == 'admin@example.com';
-        });
+        $users = User::all()
+            ->reject(function($user) {
+                return $user->email == 'admin@example.com';
+            });
         Bouncer::assign('user')->to($users->pluck('id')->toArray());
 
         $superAdminUser = User::firstWhere('email', 'admin@example.com');
