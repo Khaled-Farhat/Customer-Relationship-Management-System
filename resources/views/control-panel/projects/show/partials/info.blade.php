@@ -6,8 +6,12 @@
         <h2 class="card-subtitle">{{ $project->title }}</h2>
       </div>
       <div>
-        <x-buttons.anchor :href="route('projects.edit', $project)" content="Edit project" size="small" color="warning" class="my-1" />
-        <x-buttons.form :action="route('projects.destroy', $project)" content="Delete project" size="small" color="danger" class="my-1" />
+        @can('update', $project)
+          <x-buttons.anchor :href="route('projects.edit', $project)" content="Edit project" size="small" color="warning" class="my-1" />
+        @endcan
+        @can('delete', $project)
+          <x-buttons.form :action="route('projects.destroy', $project)" content="Delete project" size="small" color="danger" class="my-1" />
+        @endcan
       </div>
     </div>
     <div class="col-2 px-3">
