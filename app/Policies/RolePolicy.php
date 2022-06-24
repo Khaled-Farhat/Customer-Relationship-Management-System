@@ -54,7 +54,12 @@ class RolePolicy
      */
     public function update(User $user, Role $model)
     {
-        return Bouncer::can('edit-any-role');
+        if ($model->name == 'super-admin') {
+            return false;
+        }
+        else {
+            return Bouncer::can('edit-any-role');
+        }
     }
 
     /**
@@ -66,7 +71,12 @@ class RolePolicy
      */
     public function delete(User $user, Role $model)
     {
-        return Bouncer::can('delete-any-role');
+        if ($model->name == 'super-admin' || $model->name == 'user') {
+            return false;
+        }
+        else {
+            return Bouncer::can('delete-any-role');
+        }
     }
 
     /**

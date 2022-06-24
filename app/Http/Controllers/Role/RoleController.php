@@ -104,14 +104,21 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
+        if (($role->name == 'super-admin' || $role->name == 'user')
+                && $request->name != $role->name) {
+            session()->flash('error', "{$role->title} role name could not be changed");
+            return redirect()->back();
+        }
+        else {
+            $role->name = $request->name;
+            $role->title = RoleTitle::from($role)->toString();
+            $role->save();
+        }
+
         if ($request->has('permissions')) {
             $abilities = Bouncer::ability()->whereIn('title', $request->permissions)->get();
             Bouncer::sync($role)->abilities($abilities);
         }
-
-        $role->name = $request->name;
-        $role->title = RoleTitle::from($role)->toString();
-        $role->save();
 
         session()->flash('success', 'Role updated successfully');
 
