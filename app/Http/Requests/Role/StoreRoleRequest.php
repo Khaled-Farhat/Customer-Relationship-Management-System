@@ -4,6 +4,7 @@ namespace App\Http\Requests\Role;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
+use Silber\Bouncer\Database\Role;
 
 class StoreRoleRequest extends FormRequest
 {
@@ -14,7 +15,7 @@ class StoreRoleRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('create', Role::class);
     }
 
     /**

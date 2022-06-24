@@ -16,6 +16,8 @@ class RolePermissionController extends Controller
      */
     public function index(Role $role)
     {
+        $this->authorize('view', $role);
+
         return view('control-panel.roles.show.permissions', [
             'role' => $role,
             'permissions' => $role

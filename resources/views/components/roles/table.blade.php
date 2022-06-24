@@ -12,9 +12,15 @@
       <tr>
         <td>{{ $role->title }}</td>
         <td>
-          <x-buttons.anchor :href="route('roles.show', $role)" content="Show" size="small" color="primary" />
-          <x-buttons.anchor :href="route('roles.edit', $role)" content="Edit" size="small" color="warning" />
-          <x-buttons.form :action="route('roles.destroy', $role)" content="Delete" size="small" color="danger" />
+          @can('view', $role)
+            <x-buttons.anchor :href="route('roles.show', $role)" content="Show" size="small" color="primary" />
+          @endcan
+          @can('update', $role)
+            <x-buttons.anchor :href="route('roles.edit', $role)" content="Edit" size="small" color="warning" />
+          @endcan
+          @can('delete', $role)
+            <x-buttons.form :action="route('roles.destroy', $role)" content="Delete" size="small" color="danger" />
+          @endcan
         </td>
       </tr>
     @endforeach

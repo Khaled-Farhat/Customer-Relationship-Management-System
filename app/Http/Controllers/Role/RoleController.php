@@ -19,6 +19,8 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Role::class);
+
         return view('control-panel.roles.index', [
             'roles' => Role::paginate(10),
         ]);
@@ -31,6 +33,8 @@ class RoleController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Role::class);
+
         return view('control-panel.roles.create', [
             'permissions' => Bouncer::ability()
                 ->orderBy('title')
@@ -66,6 +70,8 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+        $this->authorize('view', $role);
+
         session()->reflash();
 
         return redirect()->route('roles.permissions.index', $role);
@@ -79,6 +85,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        $this->authorize('update', $role);
+
         return view('control-panel.roles.edit', [
             'role' => $role,
             'permissions' => Bouncer::ability()
@@ -118,6 +126,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        $this->authorize('delete', $role);
+
         if ($role->users()->count() !== 0) {
             session()->flash('error', 'Role is assigned to existing users');
             return redirect()->back();

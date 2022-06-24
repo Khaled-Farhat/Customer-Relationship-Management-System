@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('heading')
-  <x-buttons.anchor :href="route('roles.create')" content="Create role" color="success" />
+  <x-roles.table-actions />
 @endsection
 
 @section('table')
