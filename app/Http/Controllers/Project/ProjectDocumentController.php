@@ -19,6 +19,8 @@ class ProjectDocumentController extends Controller
      */
     public function index(Project $project)
     {
+        $this->authorize('view', $project);
+
         return view('control-panel.projects.show.documents', [
             'project' => $project,
             'documents' => $project

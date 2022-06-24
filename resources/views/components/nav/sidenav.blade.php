@@ -40,13 +40,15 @@ if (!isset($activeNavItem)) {
           </a>
         </li>
       @endcan
-      <li class="nav-item px-2">
-        <a class="nav-link @if ($activeNavItem === 'projects') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
-          href="{{ route('projects.index') }}">
-          <i class="bi bi-briefcase-fill me-2"></i>
-          Projects
-        </a>
-      </li>
+      @can('viewAny', App\Models\Project::class)
+        <li class="nav-item px-2">
+          <a class="nav-link @if ($activeNavItem === 'projects') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
+            href="{{ route('projects.index') }}">
+            <i class="bi bi-briefcase-fill me-2"></i>
+            Projects
+          </a>
+        </li>
+      @endcan
       @can('viewAny', App\Models\Task::class)
         <li class="nav-item px-2">
           <a class="nav-link @if ($activeNavItem === 'tasks') bg-primary bg-gradient @endif ps-2 pe-5 text-white"

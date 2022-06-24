@@ -19,6 +19,8 @@ class ProjectTaskController extends Controller
      */
     public function index(GetTasksRequest $request, Project $project)
     {
+        $this->authorize('view', $project);
+
         return view('control-panel.projects.show.tasks', [
             'project' => $project,
             'tasks' => $project

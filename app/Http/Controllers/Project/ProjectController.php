@@ -22,6 +22,8 @@ class ProjectController extends Controller
      */
     public function index(GetProjectsRequest $request)
     {
+        $this->authorize('viewAny', Project::class);
+
         $projects = Project::latest()
             ->filter($request->filters())
             ->with(['client', 'manager', 'status'])
@@ -39,6 +41,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Project::class);
+
         return view('control-panel.projects.create', [
             'organizations' => Client::pluck('id', 'name'),
             'users' => User::pluck('id', 'name'),
@@ -69,6 +73,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        $this->authorize('view', $project);
+
         session()->reflash();
 
         return redirect()->route('projects.tasks.index', $project);
@@ -82,6 +88,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        $this->authorize('update', $project);
+
         return view('control-panel.projects.edit', [
             'project' => $project,
             'organizations' => Client::pluck('id', 'name'),
@@ -114,6 +122,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $this->authorize('delete', $project);
+
         $project->delete();
 
         session()->flash('success', 'Project deleted successfully');

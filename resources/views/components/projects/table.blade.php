@@ -44,9 +44,15 @@
           <td>{{ $project->status->name }}</td>
           <td>
             <div class="d-flex gap-1">
-              <x-buttons.anchor :href="route('projects.show', $project)" content="Show" size="small" color="primary" />
-              <x-buttons.anchor :href="route('projects.edit', $project)" content="Edit" size="small" color="warning" />
-              <x-buttons.form :action="route('projects.destroy', $project)" content="Delete" size="small" color="danger" />
+              @can('view', $project)
+                <x-buttons.anchor :href="route('projects.show', $project)" content="Show" size="small" color="primary" />
+              @endcan
+              @can('update', $project)
+                <x-buttons.anchor :href="route('projects.edit', $project)" content="Edit" size="small" color="warning" />
+              @endcan
+              @can('delete', $project)
+                <x-buttons.form :action="route('projects.destroy', $project)" content="Delete" size="small" color="danger" />
+              @endcan
             </div>
           </td>
         </tr>
