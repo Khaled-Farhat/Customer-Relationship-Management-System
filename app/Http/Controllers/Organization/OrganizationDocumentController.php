@@ -23,7 +23,11 @@ class OrganizationDocumentController extends Controller
 
         return view('control-panel.organizations.show.documents', [
             'organization' => $organization,
-            'documents' => $organization->media()->latest()->paginate(10),
+            'documents' => $organization
+                ->media()
+                ->latest()
+                ->with('model:id')
+                ->paginate(10),
         ]);
     }
 
@@ -37,6 +41,8 @@ class OrganizationDocumentController extends Controller
      */
     public function store(StoreDocumentRequest $request, Organization $organization, DocumentService $documentService)
     {
+        $this->authorize('create', Document::class);
+
         try {
             $documentService->store($organization, $request->file('document'));
             session()->flash('success', 'File uploaded successfully');

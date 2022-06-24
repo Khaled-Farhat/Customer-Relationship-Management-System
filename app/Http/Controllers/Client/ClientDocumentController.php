@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Document\StoreDocumentRequest;
 use App\Models\Client;
+use App\Models\Document;
 use App\Services\DocumentService;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\File\Exception\UploadException;
@@ -23,7 +24,11 @@ class ClientDocumentController extends Controller
 
         return view('control-panel.clients.show.documents', [
             'client' => $client,
-            'documents' => $client->media()->latest()->paginate(10),
+            'documents' => $client
+                ->media()
+                ->latest()
+                ->with('model:id')
+                ->paginate(10),
         ]);
     }
 
@@ -37,6 +42,8 @@ class ClientDocumentController extends Controller
      */
     public function store(StoreDocumentRequest $request, Client $client, DocumentService $documentService)
     {
+        $this->authorize('create', Document::class);
+
         try {
             $documentService->store($client, $request->file('document'));
             session()->flash('success', 'File uploaded successfully');

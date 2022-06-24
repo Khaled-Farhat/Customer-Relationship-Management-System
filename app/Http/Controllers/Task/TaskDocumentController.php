@@ -26,6 +26,7 @@ class TaskDocumentController extends Controller
             'documents' => $task
                 ->media()
                 ->latest()
+                ->with('model:id')
                 ->paginate(10),
         ]);
     }
@@ -40,6 +41,8 @@ class TaskDocumentController extends Controller
      */
     public function store(StoreDocumentRequest $request, Task $task, DocumentService $documentService)
     {
+        $this->authorize('create', Document::class);
+
         try {
             $documentService->store($task, $request->file('document'));
             session()->flash('success', 'File uploaded successfully');

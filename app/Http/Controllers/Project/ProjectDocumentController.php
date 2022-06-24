@@ -26,6 +26,7 @@ class ProjectDocumentController extends Controller
             'documents' => $project
                 ->media()
                 ->latest()
+                ->with('model:id')
                 ->paginate(10),
         ]);
     }
@@ -40,6 +41,8 @@ class ProjectDocumentController extends Controller
      */
     public function store(StoreDocumentRequest $request, Project $project, DocumentService $documentService)
     {
+        $this->authorize('create', Document::class);
+
         try {
             $documentService->store($project, $request->file('document'));
             session()->flash('success', 'File uploaded successfully');

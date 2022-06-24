@@ -19,6 +19,8 @@ class DocumentController extends Controller
      */
     public function show(Request $request, Document $document, DocumentService $documentService)
     {
+        $this->authorize('view', $document->model);
+
         return $documentService->download($request, $document);
     }
 
@@ -31,6 +33,8 @@ class DocumentController extends Controller
      */
     public function update(UpdateDocumentRequest $request, Document $document)
     {
+        $this->authorize('update', $document);
+
         $document->name = $request->name;
         $document->save();
 
@@ -47,6 +51,8 @@ class DocumentController extends Controller
      */
     public function destroy(Document $document)
     {
+        $this->authorize('delete', $document);
+
         $document->delete();
 
         session()->flash('success', 'Document deleted successfully');
