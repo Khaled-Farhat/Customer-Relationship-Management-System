@@ -19,6 +19,8 @@ class TaskDocumentController extends Controller
      */
     public function index(Task $task)
     {
+        $this->authorize('view', $task);
+
         return view('control-panel.tasks.show.documents', [
             'task' => $task,
             'documents' => $task

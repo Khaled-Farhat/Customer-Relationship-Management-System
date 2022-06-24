@@ -22,6 +22,8 @@ class TaskController extends Controller
      */
     public function index(GetTasksRequest $request)
     {
+        $this->authorize('viewAny', Task::class);
+
         $tasks = Task::filter($request->filters())
             ->latest()
             ->with(['project', 'user', 'status'])
@@ -39,6 +41,8 @@ class TaskController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Task::class);
+
         if (is_null(Project::first())) {
             session()->flash('error', 'Create some projects before creating a task');
 
@@ -75,6 +79,8 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
+        $this->authorize('view',$task);
+
         session()->reflash();
 
         return redirect()->route('tasks.documents.index', $task);
@@ -88,6 +94,8 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
+        $this->authorize('update',$task);
+
         return view('control-panel.tasks.edit', [
             'task' => $task,
             'projects' => Project::pluck('id', 'title'),
@@ -120,6 +128,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        $this->authorize('delete',$task);
+
         $task->delete();
 
         session()->flash('success', 'Task deleted successfully');

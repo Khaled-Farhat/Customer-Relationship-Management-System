@@ -7,7 +7,7 @@ $options = [
 ];
 @endphp
 
-<div class="col-2">
+<div class="col-2 ms-auto">
   <x-forms.select class="d-inline" id="status_filter_button" name="status_filter" selected="{{request()->query('status')}}" :options="$options" />
 </div>
 

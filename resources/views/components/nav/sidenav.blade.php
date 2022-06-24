@@ -23,22 +23,22 @@ if (!isset($activeNavItem)) {
         </li>
       @endcan
       @can('viewAny', App\Models\Client::class)
-      <li class="nav-item px-2">
-        <a class="nav-link @if ($activeNavItem === 'clients') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
-          href="{{ route('clients.index') }}">
-          <i class="bi bi-person-lines-fill me-2"></i>
-          Clients
-        </a>
-      </li>
+        <li class="nav-item px-2">
+          <a class="nav-link @if ($activeNavItem === 'clients') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
+            href="{{ route('clients.index') }}">
+            <i class="bi bi-person-lines-fill me-2"></i>
+            Clients
+          </a>
+        </li>
       @endcan
       @can('viewAny', App\Models\Organization::class)
-      <li class="nav-item px-2">
-        <a class="nav-link @if ($activeNavItem === 'organizations') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
-          href="{{ route('organizations.index') }}">
-          <i class="bi bi-door-open-fill me-2"></i>
-          Organizations
-        </a>
-      </li>
+        <li class="nav-item px-2">
+          <a class="nav-link @if ($activeNavItem === 'organizations') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
+            href="{{ route('organizations.index') }}">
+            <i class="bi bi-door-open-fill me-2"></i>
+            Organizations
+          </a>
+        </li>
       @endcan
       <li class="nav-item px-2">
         <a class="nav-link @if ($activeNavItem === 'projects') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
@@ -47,13 +47,15 @@ if (!isset($activeNavItem)) {
           Projects
         </a>
       </li>
-      <li class="nav-item px-2">
-        <a class="nav-link @if ($activeNavItem === 'tasks') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
-          href="{{ route('tasks.index') }}">
-          <i class="bi bi-clipboard2-check-fill me-2"></i>
-          Tasks
-        </a>
-      </li>
+      @can('viewAny', App\Models\Task::class)
+        <li class="nav-item px-2">
+          <a class="nav-link @if ($activeNavItem === 'tasks') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
+            href="{{ route('tasks.index') }}">
+            <i class="bi bi-clipboard2-check-fill me-2"></i>
+            Tasks
+          </a>
+        </li>
+      @endcan
       <li class="nav-item px-2">
         <a class="nav-link @if ($activeNavItem === 'roles') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
           href="{{ route('roles.index') }}">
