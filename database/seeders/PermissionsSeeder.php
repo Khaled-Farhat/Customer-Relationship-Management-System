@@ -53,14 +53,5 @@ class PermissionsSeeder extends Seeder
                 }
             }
         }
-
-        $users = User::all()
-            ->reject(function($user) {
-                return $user->email == 'admin@example.com';
-            });
-        Bouncer::assign('user')->to($users->pluck('id')->toArray());
-
-        $superAdminUser = User::firstWhere('email', 'admin@example.com');
-        Bouncer::assign('super-admin')->to($superAdminUser);
     }
 }
