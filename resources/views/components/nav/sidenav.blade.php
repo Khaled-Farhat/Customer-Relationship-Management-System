@@ -4,11 +4,12 @@ if (!isset($activeNavItem)) {
 }
 @endphp
 
-<nav class="col-2 h-100 px-0 navbar position-fixed navbar-expand-lg bg-dark d-flex align-items-start">
+<nav class="col-2 h-100 navbar position-fixed navbar-expand-lg bg-dark d-flex align-items-start px-0">
   <div class="container px-0">
     <ul class="navbar-nav flex-column mx-auto">
-      <li class="nav-item @if ($activeNavItem === 'dashboard') bg-primary bg-gradient @endif">
-        <a class="nav-link ps-2 pe-5 w-100 text-white" aria-current="page" href="{{ route('dashboard') }}">
+      <li class="nav-item">
+        <a class="nav-link @if ($activeNavItem === 'dashboard') bg-primary bg-gradient @endif ps-2 pe-5 text-white"
+          href="{{ route('dashboard') }}">
           <i class="bi bi-house-door-fill me-2"></i>
           Dashboard
         </a>
