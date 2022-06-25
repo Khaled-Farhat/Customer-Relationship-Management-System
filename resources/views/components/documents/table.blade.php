@@ -35,17 +35,19 @@
               {{ $document->created_at->toDateString() }}
             </td>
             <td>
-              @can('view', $document)
-                <x-buttons.anchor href="{{ route('documents.show', $document) }}" content="Download" size="small"
-                  color="success" download />
-              @endcan
-              @can('update', $document)
-                <x-forms.submit :form="$formId" content="Rename" size="small" color="warning" />
-              @endcan
-              @can('delete', $document)
-                <x-buttons.form action="{{ route('documents.destroy', $document) }}" content="Delete" size="small"
-                  color="danger" />
-              @endcan
+              <div class="d-flex gap-1">
+                @can('view', $document)
+                  <x-buttons.anchor href="{{ route('documents.show', $document) }}" content="Download" size="small"
+                    color="success" download />
+                @endcan
+                @can('update', $document)
+                  <x-forms.submit :form="$formId" content="Rename" size="small" color="warning" />
+                @endcan
+                @can('delete', $document)
+                  <x-buttons.form action="{{ route('documents.destroy', $document) }}" content="Delete" size="small"
+                    color="danger" />
+                @endcan
+              </div>
             </td>
           </tr>
         @endforeach

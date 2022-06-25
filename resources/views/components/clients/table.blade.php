@@ -35,15 +35,17 @@
               </td>
             @endif
             <td>
-              @can('view', $client)
-                <x-buttons.anchor :href="route('clients.show', $client)" content="Show" size="small" color="primary" />
-              @endcan
-              @can('update', $client)
-                <x-buttons.anchor :href="route('clients.edit', $client)" content="Edit" size="small" color="warning" />
-              @endcan
-              @can('delete', $client)
-                <x-buttons.form :action="route('clients.destroy', $client)" content="Delete" size="small" color="danger" />
-              @endcan
+              <div class="d-flex gap-1">
+                @can('view', $client)
+                  <x-buttons.anchor :href="route('clients.show', $client)" content="Show" size="small" color="primary" />
+                @endcan
+                @can('update', $client)
+                  <x-buttons.anchor :href="route('clients.edit', $client)" content="Edit" size="small" color="warning" />
+                @endcan
+                @can('delete', $client)
+                  <x-buttons.form :action="route('clients.destroy', $client)" content="Delete" size="small" color="danger" />
+                @endcan
+              </div>
             </td>
           </tr>
         @endforeach
