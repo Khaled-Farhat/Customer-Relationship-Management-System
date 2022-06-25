@@ -1,7 +1,7 @@
 @extends('layouts.control-panel')
 
 @section('content')
-    <div class="mb-4">
+    <div class="mb-2">
         @yield('heading')
     </div>
     <div class="card">

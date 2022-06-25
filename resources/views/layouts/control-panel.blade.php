@@ -19,15 +19,14 @@
 
 <body>
   <x-nav.topnav />
+  <div class="container-fluid px-0">
   <div class="row mx-0 px-0">
-    <div class="col-2 mh-100 ps-0">
-      <x-nav.sidenav />
-    </div>
-    <div class="col-10">
-      <div class="pe-3 py-4">
+    <x-nav.sidenav />
+    <div class="col-2"></div>
+    <div class="col-10 py-3">
         @yield('content')
-      </div>
     </div>
+  </div>
   </div>
 
   @if (session()->has('success'))
