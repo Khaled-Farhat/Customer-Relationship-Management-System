@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: .docker/app.dockerfile
+    restart: unless-stopped
+    volumes:
+      - /var/www/storage
+    environment:
+      - "APP_ENV=development"
+      - "APP_DEBUG=false"
+      - "DB_CONNECTION=mysql"
+      - "DB_HOST=database"
+      - "DB_PORT=3306"
+      - "DB_DATABASE=crm_laravel"
+      - "DB_USERNAME=root"
+      - "DB_PASSWORD="
+    networks:
+      - crm-network
+
+  web:
+    build:
+      context: ./
+      dockerfile: .docker/web.dockerfile
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    networks:
+      - crm-network
+
+  database:
+    image: mysql:8.0.29
+    restart: unless-stopped
+    volumes:
+      - /var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=crm_laravel"
+      - "MYSQL_ALLOW_EMPTY_PASSWORD=1"
+      - "MYSQL_ROOT_PASSWORD="
+    networks:
+      - crm-network
+
+networks:
+  crm-network:
+    driver: bridge
